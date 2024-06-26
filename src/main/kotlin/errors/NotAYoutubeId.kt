@@ -1,7 +1,6 @@
 package errors
 
-@JvmInline
-value class NotAYoutubeId(private val string: String) : GeneralError {
+data class NotAYoutubeId(private val string: String) : GeneralError {
   override val message: String
-    get() = "\"$string\" is not a Youtube ID"
+    get() = "\"$string\" is not a valid Youtube ID"
 }
