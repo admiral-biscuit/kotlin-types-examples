@@ -8,14 +8,14 @@ class YoutubeIdTest :
       it("is a valid YoutubeId") {
         val subject = YoutubeId.eitherFromString("haf67eKF0uo")
 
-        val result = subject.shouldBeRight()
-        result.value shouldBe "haf67eKF0uo"
+        val youtubeId = subject.shouldBeRight()
+        youtubeId.value shouldBe "haf67eKF0uo"
       }
 
       it("is not a valid YoutubeId") {
         val subject = YoutubeId.eitherFromString("garbage")
 
-        val result = subject.shouldBeLeft()
-        result.message shouldBe "\"garbage\" is not a Youtube ID"
+        val error = subject.shouldBeLeft()
+        error.message shouldBe "\"garbage\" is not a Youtube ID"
       }
     })
