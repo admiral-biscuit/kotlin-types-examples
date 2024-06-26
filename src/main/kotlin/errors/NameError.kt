@@ -19,8 +19,6 @@ sealed interface NameError : GeneralError {
       get() = "Name \"$name\" must not contain \"$slur\"."
   }
 
-  data class MultipleIssues(val errors: NonEmptyList<NameError>) : NameError {
-    override val message: String
-      get() = "..."
-  }
+  data class MultipleIssues(override val errors: NonEmptyList<NameError>) :
+      NameError, MultiError<NameError>
 }
