@@ -30,13 +30,10 @@ value class Name private constructor(val value: String) {
         }
       }
 
-      return if (errors.isEmpty()) {
-        Name(string).right()
-      } else {
-        when (errors.size) {
-          1 -> errors.single()
-          else -> NameError.MultipleIssues(errors.toNonEmptyListOrNull()!!)
-        }.left()
+      return when (errors.size) {
+        0 -> Name(string).right()
+        1 -> errors.single().left()
+        else -> NameError.MultipleIssues(errors.toNonEmptyListOrNull()!!).left()
       }
     }
   }
